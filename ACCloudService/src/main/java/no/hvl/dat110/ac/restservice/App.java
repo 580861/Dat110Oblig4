@@ -14,7 +14,7 @@ import static spark.Spark.put;;
  *
  */
 public class App {
-///test commit2
+
 	static AccessLog accesslog = null;
 	static AccessCode accesscode = null;
 
@@ -26,7 +26,7 @@ public class App {
 			port(8080);
 		}
 
-		// objects for data stored in the service
+	
 
 		accesslog = new AccessLog();
 		accesscode = new AccessCode();
@@ -35,7 +35,7 @@ public class App {
 			res.type("application/json");
 		});
 
-		// for basic testing purposes
+		
 		get("/accessdevice/hello", (req, res) -> {
 
 			Gson gson = new Gson();
@@ -43,10 +43,7 @@ public class App {
 			return gson.toJson("IoT Access Control Device");
 		});
 
-		// TODO: implement the routes required for the access control service
-		// as per the HTTP/REST operations describined in the project description
 		
-		// Post , record an access entry in the log
 		post("/accessdevice/log/", (req, res) -> {
 			Gson gson = new Gson();
 			AccessMessage msg = gson.fromJson(req.body(), AccessMessage.class);
@@ -55,10 +52,9 @@ public class App {
 			return gson.toJson(accesslog.get(id));
 		});
 
-		// get
-		// retrieve the access log
+		
 		get("/accessdevice/log/", (req, res) -> accesslog.toJson());
-		//retrive a specific entry in the access log
+		
 		get("/accessdevice/log/:id", (req, res) -> {
 			Gson gson = new Gson();
 			int id = Integer.parseInt(req.params(":id"));
@@ -66,8 +62,7 @@ public class App {
 			return gson.toJson(accesslog.get(id));
 		});
 
-		// put 
-		// updates the access code
+		
 		put("/accessdevice/code", (req, res) -> {
 			Gson gson = new Gson();
 			AccessCode code = gson.fromJson(req.body(), AccessCode.class);
@@ -75,15 +70,14 @@ public class App {
 
 			return gson.toJson(accesscode);
 		});
-		//  return the current access code stored in the server
+		
 		get("/accessdevice/code", (req, res) -> {
 			Gson gson = new Gson();
 
 			return gson.toJson(accesscode);
 		});
 		
-		// delete
-		//delete all log entries
+		
 		delete("/accessdevice/log/", (req, res) -> {
 			accesslog.clear();
 

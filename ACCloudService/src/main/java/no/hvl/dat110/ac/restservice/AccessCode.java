@@ -2,7 +2,7 @@ package no.hvl.dat110.ac.restservice;
 
 public class AccessCode {
 
-	private int[] accesscode = {1,2}; // default access code
+	private int[] accesscode = {1,2}; 
 	
 	public AccessCode() {
 		

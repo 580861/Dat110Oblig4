@@ -2,7 +2,7 @@ package no.hvl.dat110.ac.restservice;
 
 public class AccessEntry {
 
-	// class describing access entries stored on the service
+	
 	private Integer id;
 	private String message;
 	
